@@ -1217,7 +1217,7 @@
           <span class="contact-item-value">Mon – Sat: 8am – 7pm<br>Sun: 10am – 4pm</span>
         </div>
       </div>
-      <form class="contact-form reveal" onsubmit="handleSubmit(event)">
+      <form class="contact-form reveal" name="booking" method="POST" data-netlify="true">
         <div class="form-row">
           <div class="form-group">
             <label for="name">Full Name</label>
@@ -1294,11 +1294,6 @@
     reveals.forEach(el => observer.observe(el));
 
     // Form submit demo
-    function handleSubmit(e) {
-      e.preventDefault();
-      document.getElementById('form-success').style.display = 'block';
-      e.target.reset();
-    }
   </script>
 </body>
 </html>
