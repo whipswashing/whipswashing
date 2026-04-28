@@ -514,6 +514,11 @@
     @media (max-width: 900px) {
       nav { padding: 1.2rem 2rem; }
       nav ul { display: none; }
+      .hamburger { display: flex; }
+      .window-contact-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+      .form-row { grid-template-columns: 1fr; }
+      .btn-submit { width: 100%; text-align: center; }
+      .window-contact { padding: 4rem 1.2rem; }
       section, .why-strip, .cta-banner { padding: 4rem 2rem; }
       .membership-grid { grid-template-columns: 1fr; max-width: 100%; }
       footer { flex-direction: column; gap: 1.2rem; text-align: center; }
@@ -522,6 +527,18 @@
   </style>
 </head>
 <body>
+
+  <!-- Mobile Menu -->
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="index.html" onclick="closeMenu()">Home</a>
+    <div class="mobile-divider"></div>
+    <a href="index.html#services" onclick="closeMenu()">Auto Detailing</a>
+    <a href="services.html" onclick="closeMenu()">Window Cleaning</a>
+    <a href="index.html#gallery" onclick="closeMenu()">Gallery</a>
+    <a href="index.html#about" onclick="closeMenu()">About</a>
+    <div class="mobile-divider"></div>
+    <a href="#window-quote" class="mobile-cta" onclick="closeMenu()">Get a Quote</a>
+  </div>
 
   <!-- NAV -->
   <nav>
@@ -532,7 +549,10 @@
       <li><a href="services.html" class="active">Window Cleaning</a></li>
       <li><a href="index.html#contact">Contact</a></li>
     </ul>
-    <a href="index.html#contact" class="nav-cta">Get a Quote</a>
+    <a href="#window-quote" class="nav-cta">Get a Quote</a>
+    <button class="hamburger" id="hamburger" onclick="toggleMenu()" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
   </nav>
 
   <!-- PAGE HERO -->
@@ -608,17 +628,7 @@
 
     </div>
 
-    <div class="reveal" style="margin-top:2.5rem;">
-      <p class="section-label">Add-Ons</p>
-      <div class="addons-grid">
-        <div class="addon-item"><span class="addon-name">Additional Windows (per window)</span><span class="addon-price">–5</span></div>
-        <div class="addon-item"><span class="addon-name">Hard Water Stain Removal</span><span class="addon-price">5–0</span></div>
-        <div class="addon-item"><span class="addon-name">Solar Panel Cleaning</span><span class="addon-price">From 5</span></div>
-        <div class="addon-item"><span class="addon-name">Gutter Face Cleaning</span><span class="addon-price">From 0</span></div>
-        <div class="addon-item"><span class="addon-name">Glass Seal &amp; Protect Coating</span><span class="addon-price">From 0</span></div>
-        <div class="addon-item"><span class="addon-name">Skylight Cleaning</span><span class="addon-price">From 5</span></div>
-      </div>
-    </div>
+  <p style="font-family:var(--font-serif);font-size:0.85rem;font-style:italic;color:var(--muted);margin-top:1.5rem;">* All prices are estimates only. Final pricing is determined after an assessment of your property, window count, condition, and accessibility. Contact us for an accurate quote.</p>
   </section>
 
   <!-- COMMERCIAL -->
@@ -679,18 +689,7 @@
 
     </div>
 
-    <div class="reveal" style="margin-top:2.5rem;">
-      <p class="section-label">Add-Ons</p>
-      <div class="addons-grid">
-        <div class="addon-item"><span class="addon-name">Pressure Washing (walkways / exterior)</span><span class="addon-price">From 20</span></div>
-        <div class="addon-item"><span class="addon-name">High-Rise / Ladder Access</span><span class="addon-price">Custom Quote</span></div>
-        <div class="addon-item"><span class="addon-name">Post-Construction Clean</span><span class="addon-price">Custom Quote</span></div>
-        <div class="addon-item"><span class="addon-name">Emergency / Same-Day Service</span><span class="addon-price">+5</span></div>
-        <div class="addon-item"><span class="addon-name">Glass Seal &amp; Protect Coating</span><span class="addon-price">From 0</span></div>
-        <div class="addon-item"><span class="addon-name">Recurring Service Discount</span><span class="addon-price">Up to 20% off</span></div>
-      </div>
-      <p class="footnote">* Commercial pricing varies by building size, access, and frequency. Contact us for a free on-site quote.</p>
-    </div>
+  <p style="font-family:var(--font-serif);font-size:0.85rem;font-style:italic;color:var(--muted);margin-top:1.5rem;">* All commercial pricing is custom quoted based on building size, window count, access requirements, and service frequency. Contact us for a free on-site assessment.</p>
   </section>
 
   <!-- WHY US -->
@@ -766,13 +765,109 @@
     </div>
   </section>
 
-  <!-- CTA BANNER -->
-  <div class="cta-banner reveal">
-    <h2>READY FOR CRYSTAL CLEAR?</h2>
-    <p>Contact us today for a free quote — residential or commercial.</p>
-    <a href="index.html#contact" class="btn-primary">Request a Quote</a>
-    <a href="index.html" class="btn-ghost">Back to Auto Detailing</a>
-  </div>
+  <!-- WINDOW CLEANING QUOTE FORM -->
+  <section id="window-quote" class="window-contact">
+    <div class="reveal">
+      <p class="section-label">Get in Touch</p>
+      <h2 class="section-title">REQUEST A QUOTE</h2>
+      <div class="divider"></div>
+    </div>
+    <div class="window-contact-grid">
+      <div class="contact-info reveal">
+        <div class="contact-item">
+          <span class="contact-item-label">Phone</span>
+          <span class="contact-item-value"><a href="tel:+13162490040">(316) 249-0040</a></span>
+        </div>
+        <div class="contact-item">
+          <span class="contact-item-label">Email</span>
+          <span class="contact-item-value"><a href="mailto:whipswashing@gmail.com">whipswashing@gmail.com</a></span>
+        </div>
+        <div class="contact-item">
+          <span class="contact-item-label">Service Area</span>
+          <span class="contact-item-value">Wichita, KS &amp; Surrounding Areas</span>
+        </div>
+        <div class="contact-item">
+          <span class="contact-item-label">Also Available</span>
+          <span class="contact-item-value">On-site quotes for commercial properties</span>
+        </div>
+        <a href="index.html" class="btn-primary" style="margin-top:1rem;display:inline-block;text-align:center;">View Auto Detailing</a>
+      </div>
+      <form class="contact-form reveal" name="window-quote" method="POST" data-netlify="true" action="/thanks.html">
+        <input type="hidden" name="form-name" value="window-quote" />
+        <p style="display:none;"><label>Don't fill this out: <input name="bot-field" /></label></p>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="wname">Full Name</label>
+            <input type="text" id="wname" name="name" placeholder="John Smith" required />
+          </div>
+          <div class="form-group">
+            <label for="wphone">Phone Number</label>
+            <input type="tel" id="wphone" name="phone" placeholder="(316) 000-0000" />
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="wemail">Email Address</label>
+          <input type="email" id="wemail" name="email" placeholder="you@email.com" required />
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="property-type">Property Type</label>
+            <select id="property-type" name="property-type" required>
+              <option value="" disabled selected>Select property type</option>
+              <option>Residential — Home</option>
+              <option>Commercial — Storefront</option>
+              <option>Commercial — Office Building</option>
+              <option>Property Management / HOA</option>
+              <option>Other</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="service-type">Service Needed</label>
+            <select id="service-type" name="service-type" required>
+              <option value="" disabled selected>Select service</option>
+              <option>Exterior Only</option>
+              <option>Interior + Exterior</option>
+              <option>Deep Clean</option>
+              <option>Membership / Recurring Plan</option>
+              <option>Not Sure — Need a Quote</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="num-windows">Approx. Number of Windows</label>
+            <select id="num-windows" name="num-windows">
+              <option value="" disabled selected>Select range</option>
+              <option>1–10 windows</option>
+              <option>11–20 windows</option>
+              <option>21–40 windows</option>
+              <option>40+ windows</option>
+              <option>Not sure</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="frequency">How Often?</label>
+            <select id="frequency" name="frequency">
+              <option value="" disabled selected>Select frequency</option>
+              <option>One-time clean</option>
+              <option>Monthly membership</option>
+              <option>Quarterly membership</option>
+              <option>Not sure yet</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="address">Property Address or General Area</label>
+          <input type="text" id="address" name="address" placeholder="e.g. East Wichita, or full address" />
+        </div>
+        <div class="form-group">
+          <label for="wmessage">Anything Else We Should Know?</label>
+          <textarea id="wmessage" name="message" placeholder="Hard water stains, special access needs, specific concerns..."></textarea>
+        </div>
+        <button type="submit" class="btn-submit">Send Quote Request</button>
+      </form>
+    </div>
+  </section>
 
   <!-- FOOTER -->
   <footer>
@@ -796,6 +891,18 @@
       });
     }, { threshold: 0.1 });
     reveals.forEach(el => observer.observe(el));
+    function toggleMenu() {
+      const menu = document.getElementById('mobileMenu');
+      const btn = document.getElementById('hamburger');
+      menu.classList.toggle('open');
+      btn.classList.toggle('open');
+      document.body.style.overflow = menu.classList.contains('open') ? 'hidden' : '';
+    }
+    function closeMenu() {
+      document.getElementById('mobileMenu').classList.remove('open');
+      document.getElementById('hamburger').classList.remove('open');
+      document.body.style.overflow = '';
+    }
   </script>
 </body>
 </html>
