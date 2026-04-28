@@ -1304,7 +1304,7 @@
         </div>
 
       </div>
-      <form class="contact-form reveal" name="booking" method="POST" data-netlify="true" onsubmit="handleSubmit(event)">
+      <form class="contact-form reveal" name="booking" method="POST" data-netlify="true" action="/thanks.html">
         <input type="hidden" name="form-name" value="booking" />
         <p style="display:none;"><label>Don't fill this out: <input name="bot-field" /></label></p>
         <div class="form-row">
@@ -1379,9 +1379,7 @@
           <textarea id="message" name="message" placeholder="Any specific concerns, questions, or details about your vehicle..."></textarea>
         </div>
         <button type="submit" class="btn-submit">Send Quote Request</button>
-        <div id="form-success" style="display:none; color:var(--gold); font-family:var(--font-serif); font-style:italic; font-size:1rem; margin-top:1rem;">
-          ✓ Request received! We'll be in touch with your quote shortly.
-        </div>
+
       </form>
     </div>
   </section>
@@ -1410,27 +1408,7 @@
       document.querySelector('.addons-section').style.display = 'block';
     }
 
-    // Netlify form handler — submits without page redirect
-    function handleSubmit(e) {
-      e.preventDefault();
-      const form = e.target;
-      const data = new FormData(form);
-      fetch('/', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body: new URLSearchParams(data).toString()
-      })
-      .then(() => {
-        form.reset();
-        document.getElementById('form-success').style.display = 'block';
-        setTimeout(() => {
-          document.getElementById('form-success').style.display = 'none';
-        }, 6000);
-      })
-      .catch(() => {
-        alert('Something went wrong. Please call or email us directly.');
-      });
-    }
+
 
     function showFleet() {
       document.querySelectorAll('.vtab').forEach(t => t.classList.remove('active'));
@@ -1453,11 +1431,7 @@
     reveals.forEach(el => observer.observe(el));
 
     // Form submit demo
-    function handleSubmit(e) {
-      e.preventDefault();
-      document.getElementById('form-success').style.display = 'block';
-      e.target.reset();
-    }
+
   </script>
 </body>
 </html>
