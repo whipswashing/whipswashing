@@ -912,6 +912,30 @@
     }
 
     /* ── RESPONSIVE ── */
+    .fleet-notice {
+      display: none;
+      background: linear-gradient(145deg, #151208 0%, #0f0f0f 100%);
+      border: 1px solid rgba(201,168,76,0.25);
+      padding: 2.5rem;
+      text-align: center;
+      margin-top: 2rem;
+    }
+    .fleet-notice h3 {
+      font-family: var(--font-display);
+      font-size: 2rem;
+      letter-spacing: 0.08em;
+      color: var(--white);
+      margin-bottom: 0.8rem;
+    }
+    .fleet-notice p {
+      font-family: var(--font-serif);
+      font-size: 1.05rem;
+      font-style: italic;
+      color: var(--muted);
+      margin-bottom: 1.5rem;
+      line-height: 1.7;
+    }
+
     .price-disclaimer {
       margin-top: 1rem;
       font-family: var(--font-serif);
@@ -1040,6 +1064,7 @@
       <button class="vtab active" onclick="setVehicle('sedan')">Sedan / Coupe</button>
       <button class="vtab" onclick="setVehicle('suv')">SUV / Minivan</button>
       <button class="vtab" onclick="setVehicle('truck')">Truck</button>
+      <button class="vtab fleet-tab" onclick="showFleet()">Fleet</button>
     </div>
 
     <div class="services-grid reveal">
@@ -1093,6 +1118,12 @@
         <p class="price-disclaimer">⚠ Price subject to change based on actual vehicle condition</p>
       </div>
 
+    </div>
+
+    <div class="fleet-notice reveal" id="fleet-notice">
+      <h3>FLEET SERVICES</h3>
+      <p>We offer custom fleet detailing packages for businesses with multiple vehicles.<br>Pricing and scheduling are tailored to your specific needs — get in touch and we'll work out a plan that fits your fleet.</p>
+      <a href="#contact" class="btn-primary">Contact Us About Fleet Options</a>
     </div>
 
     <!-- Add-Ons -->
@@ -1228,17 +1259,9 @@
         </div>
         <div class="about-box about-box-accent"></div>
         <div class="stats-row">
-          <div class="about-stat">
-            <div class="about-stat-number">500<span style="color:var(--gold);font-family:var(--font-display);font-size:2rem;">+</span></div>
-            <div class="about-stat-label">Cars Detailed</div>
-          </div>
-          <div class="about-stat" style="border-left:1px solid var(--border);border-right:1px solid var(--border);">
+          <div class="about-stat" style="grid-column:1/-1;">
             <div class="about-stat-number">5★</div>
             <div class="about-stat-label">Avg. Rating</div>
-          </div>
-          <div class="about-stat">
-            <div class="about-stat-number">3<span style="color:var(--gold);font-family:var(--font-display);font-size:2rem;">yr</span></div>
-            <div class="about-stat-label">In Business</div>
           </div>
         </div>
       </div>
@@ -1265,7 +1288,7 @@
       <div class="contact-info reveal">
         <div class="contact-item">
           <span class="contact-item-label">Phone</span>
-          <span class="contact-item-value"><a href="tel:+15550000000">(555) 000-0000</a></span>
+          <span class="contact-item-value"><a href="tel:+13162490040">(316) 249-0040</a></span>
         </div>
         <div class="contact-item">
           <span class="contact-item-label">Email</span>
@@ -1281,45 +1304,78 @@
         </div>
 
       </div>
-      <form class="contact-form reveal" onsubmit="handleSubmit(event)">
+      <form class="contact-form reveal" name="booking" method="POST" data-netlify="true">
         <div class="form-row">
           <div class="form-group">
             <label for="name">Full Name</label>
-            <input type="text" id="name" placeholder="John Smith" required />
+            <input type="text" id="name" name="name" placeholder="John Smith" required />
           </div>
           <div class="form-group">
             <label for="phone">Phone Number</label>
-            <input type="tel" id="phone" placeholder="(555) 000-0000" />
+            <input type="tel" id="phone" name="phone" placeholder="(316) 000-0000" />
           </div>
         </div>
         <div class="form-group">
           <label for="email">Email Address</label>
-          <input type="email" id="email" placeholder="you@email.com" required />
+          <input type="email" id="email" name="email" placeholder="you@email.com" required />
         </div>
         <div class="form-row">
           <div class="form-group">
-            <label for="service">Service Package</label>
-            <select id="service" required>
-              <option value="" disabled selected>Select a package</option>
-              <option>The Refresh — $75+</option>
-              <option>The Signature — $175+</option>
-              <option>The Elite — $350+</option>
-              <option>Not sure — need a quote</option>
+            <label for="vehicle-type">Vehicle Type</label>
+            <select id="vehicle-type" name="vehicle-type" required>
+              <option value="" disabled selected>Select vehicle type</option>
+              <option>Sedan / Coupe</option>
+              <option>SUV / Minivan</option>
+              <option>Truck</option>
+              <option>Fleet — Multiple Vehicles</option>
             </select>
           </div>
           <div class="form-group">
-            <label for="vehicle">Vehicle Type</label>
-            <input type="text" id="vehicle" placeholder="e.g. 2021 BMW M3" />
+            <label for="vehicle">Year, Make &amp; Model</label>
+            <input type="text" id="vehicle" name="vehicle" placeholder="e.g. 2021 BMW M3" />
           </div>
         </div>
         <div class="form-group">
-          <label for="message">Additional Notes</label>
-          <textarea id="message" placeholder="Tell us about your vehicle or any specific concerns..."></textarea>
+          <label for="service-type">Service Interested In</label>
+          <select id="service-type" name="service-type" required>
+            <option value="" disabled selected>What service do you need?</option>
+            <option>Interior Refresh</option>
+            <option>Exterior Wash</option>
+            <option>Full Detail (Most Popular)</option>
+            <option>Add-On Services Only</option>
+            <option>Membership Plan</option>
+            <option>Fleet Services</option>
+            <option>Not Sure — Need a Quote</option>
+          </select>
         </div>
-        <button type="submit" class="btn-submit">Send Booking Request</button>
-        <div id="form-success" style="display:none; color:var(--gold); font-family:var(--font-serif); font-style:italic; font-size:1rem; margin-top:0.5rem;">
-          ✓ Message sent! We'll be in touch shortly.
+        <div class="form-group">
+          <label for="preference">Mobile or Drop-Off?</label>
+          <select id="preference" name="preference">
+            <option value="" disabled selected>Choose your preference</option>
+            <option>Mobile — Come to me</option>
+            <option>Drop-Off — I'll bring it to the shop in Park City</option>
+            <option>No preference</option>
+          </select>
         </div>
+        <div class="form-group">
+          <label for="condition">How would you describe your vehicle's current condition?</label>
+          <select id="condition" name="condition">
+            <option value="" disabled selected>Select condition</option>
+            <option>Great — just needs a refresh</option>
+            <option>Average — some dirt and buildup</option>
+            <option>Rough — heavy dirt, stains or odors</option>
+            <option>Very Poor — needs serious attention</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="addons">Any Add-Ons You're Interested In?</label>
+          <textarea id="addons" name="addons" placeholder="e.g. Pet hair removal, leather conditioning, odor treatment..."></textarea>
+        </div>
+        <div class="form-group">
+          <label for="message">Anything Else We Should Know?</label>
+          <textarea id="message" name="message" placeholder="Any specific concerns, questions, or details about your vehicle..."></textarea>
+        </div>
+        <button type="submit" class="btn-submit">Send Quote Request</button>
       </form>
     </div>
   </section>
@@ -1343,6 +1399,17 @@
       document.querySelectorAll('.price-val').forEach(el => {
         el.textContent = el.dataset[type];
       });
+      document.getElementById('fleet-notice').style.display = 'none';
+      document.querySelector('.services-grid').style.display = 'grid';
+      document.querySelector('.addons-section').style.display = 'block';
+    }
+
+    function showFleet() {
+      document.querySelectorAll('.vtab').forEach(t => t.classList.remove('active'));
+      document.querySelector('.fleet-tab').classList.add('active');
+      document.querySelector('.services-grid').style.display = 'none';
+      document.querySelector('.addons-section').style.display = 'none';
+      document.getElementById('fleet-notice').style.display = 'block';
     }
 
     // Scroll reveal
