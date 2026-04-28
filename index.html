@@ -1062,8 +1062,8 @@
     <!-- Vehicle Type Toggle -->
     <div class="vehicle-tabs reveal">
       <button class="vtab active" onclick="setVehicle('sedan')">Sedan / Coupe</button>
-      <button class="vtab" onclick="setVehicle('suv')">SUV / Minivan</button>
-      <button class="vtab" onclick="setVehicle('truck')">Truck</button>
+      <button class="vtab" onclick="setVehicle('suv')">SUV</button>
+      <button class="vtab" onclick="setVehicle('truck')">Truck / Minivan</button>
       <button class="vtab fleet-tab" onclick="showFleet()">Fleet</button>
     </div>
 
@@ -1306,6 +1306,7 @@
       </div>
       <form class="contact-form reveal" name="booking" method="POST" data-netlify="true" onsubmit="handleSubmit(event)">
         <input type="hidden" name="form-name" value="booking" />
+        <p style="display:none;"><label>Don't fill this out: <input name="bot-field" /></label></p>
         <div class="form-row">
           <div class="form-group">
             <label for="name">Full Name</label>
@@ -1326,7 +1327,8 @@
             <select id="vehicle-type" name="vehicle-type" required>
               <option value="" disabled selected>Select vehicle type</option>
               <option>Sedan / Coupe</option>
-              <option>SUV / Minivan</option>
+              <option>SUV</option>
+              <option>Minivan</option>
               <option>Truck</option>
               <option>Fleet — Multiple Vehicles</option>
             </select>
