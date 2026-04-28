@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Thank You — Whips Washing</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Rajdhani:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --black: #080808;
+      --gold: #c9a84c;
+      --gold-light: #e8c97a;
+      --white: #f0ece4;
+      --muted: #7a7570;
+      --border: #1e1e1e;
+      --font-display: 'Bebas Neue', sans-serif;
+      --font-serif: 'Cormorant Garamond', serif;
+      --font-body: 'Rajdhani', sans-serif;
+    }
+    body {
+      background: var(--black);
+      color: var(--white);
+      font-family: var(--font-body);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 2rem;
+    }
+    .logo img { height: 80px; filter: invert(1); margin-bottom: 2.5rem; }
+    .icon { font-size: 3rem; margin-bottom: 1rem; }
+    h1 {
+      font-family: var(--font-display);
+      font-size: clamp(3rem, 8vw, 6rem);
+      letter-spacing: 0.06em;
+      color: var(--white);
+      margin-bottom: 0.5rem;
+    }
+    .gold-line {
+      width: 60px;
+      height: 2px;
+      background: var(--gold);
+      margin: 1.2rem auto;
+    }
+    p {
+      font-family: var(--font-serif);
+      font-size: 1.2rem;
+      font-style: italic;
+      color: var(--muted);
+      max-width: 480px;
+      line-height: 1.8;
+      margin-bottom: 0.8rem;
+    }
+    .contact-note {
+      font-size: 0.95rem;
+      margin-bottom: 2.5rem;
+    }
+    .btn {
+      font-family: var(--font-body);
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--black);
+      background: var(--gold);
+      padding: 1rem 2.4rem;
+      border-radius: 1px;
+      text-decoration: none;
+      transition: background 0.3s;
+    }
+    .btn:hover { background: var(--gold-light); }
+  </style>
+</head>
+<body>
+  <div class="logo"><img src="Whips_Washing.png" alt="Whips Washing" /></div>
+  <div class="icon">✦</div>
+  <h1>THANK YOU</h1>
+  <div class="gold-line"></div>
+  <p>Your quote request has been received. We'll review your details and get back to you shortly.</p>
+  <p class="contact-note">In the meantime, feel free to reach us directly at <strong style="color:var(--white);">(316) 249-0040</strong> or <strong style="color:var(--white);">whipswashing@gmail.com</strong></p>
+  <a href="index.html" class="btn">Back to Home</a>
+</body>
+</html>
