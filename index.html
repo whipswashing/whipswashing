@@ -1030,6 +1030,161 @@
       color: var(--muted);
     }
 
+
+    /* ── REVIEWS ── */
+    #reviews {
+      background: var(--deep);
+      border-top: 1px solid var(--border);
+      padding: 7rem 4rem;
+    }
+
+    .reviews-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: 3.5rem;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+    }
+
+    .reviews-slider {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .reviews-track {
+      display: flex;
+      transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    .review-card {
+      min-width: 100%;
+      padding: 0 1rem;
+      box-sizing: border-box;
+    }
+
+    .review-inner {
+      background: var(--card);
+      border: 1px solid var(--border);
+      padding: 3rem;
+      position: relative;
+      max-width: 860px;
+      margin: 0 auto;
+    }
+
+    .review-stars {
+      color: var(--gold);
+      font-size: 1rem;
+      letter-spacing: 0.2em;
+      margin-bottom: 1.2rem;
+    }
+
+    .review-text {
+      font-family: var(--font-serif);
+      font-size: 1.15rem;
+      font-style: italic;
+      color: rgba(240,236,228,0.85);
+      line-height: 1.85;
+      margin-bottom: 1.8rem;
+    }
+
+    .review-author {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .review-avatar {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--gold), rgba(201,168,76,0.3));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-display);
+      font-size: 1.1rem;
+      color: var(--black);
+      flex-shrink: 0;
+    }
+
+    .review-name {
+      font-family: var(--font-body);
+      font-size: 0.8rem;
+      font-weight: 500;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--white);
+    }
+
+    .review-source {
+      font-family: var(--font-serif);
+      font-size: 0.78rem;
+      font-style: italic;
+      color: var(--muted);
+      margin-top: 0.15rem;
+    }
+
+    .reviews-controls {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1.5rem;
+      margin-top: 2.5rem;
+    }
+
+    .review-arrow {
+      background: var(--card);
+      border: 1px solid var(--border);
+      color: var(--gold);
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: background 0.3s, border-color 0.3s;
+      border-radius: 1px;
+      flex-shrink: 0;
+    }
+
+    .review-arrow:hover { background: rgba(201,168,76,0.1); border-color: var(--gold); }
+
+    .review-dots {
+      display: flex;
+      gap: 6px;
+      align-items: center;
+    }
+
+    .review-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--border);
+      cursor: pointer;
+      transition: background 0.3s, transform 0.3s;
+    }
+
+    .review-dot.active {
+      background: var(--gold);
+      transform: scale(1.3);
+    }
+
+    .review-counter {
+      font-family: var(--font-body);
+      font-size: 0.72rem;
+      letter-spacing: 0.2em;
+      color: var(--muted);
+    }
+
+    @media (max-width: 900px) {
+      #reviews { padding: 4rem 1.2rem; }
+      .review-inner { padding: 2rem 1.5rem; }
+      .reviews-header { flex-direction: column; align-items: flex-start; }
+      .review-text { font-size: 1rem; }
+    }
+
     /* ── RESPONSIVE ── */
     .fleet-notice {
       display: none;
@@ -1426,6 +1581,100 @@
 
   </section>
 
+
+  <!-- REVIEWS -->
+  <section id="reviews">
+    <div class="reviews-header reveal">
+      <div>
+        <p class="section-label">What Clients Say</p>
+        <h2 class="section-title">REVIEWS</h2>
+        <div class="divider"></div>
+      </div>
+      <p class="section-desc" style="text-align:right;">Real customers. Real results. See what people are saying about Whips Washing.</p>
+    </div>
+    <div class="reviews-slider reveal">
+      <div class="reviews-track" id="reviewsTrack">
+      <div class="review-card">
+        <div class="review-inner">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">Cole did amazing work on the inside and outside of my vehicle. I let him wash it after I bought it from the dealership and he got everything that they missed. He was great to work with and I highly recommend him!</p>
+          <div class="review-author">
+            <div class="review-source">Via Facebook · Whips Washing</div>
+          </div>
+        </div>
+      </div>
+      <div class="review-card">
+        <div class="review-inner">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">We gave them quite a challenge vehicle after three kids, dirt roads and whatever else. We just picked up our vehicle and it smells so fresh and looks so clean. Thank you both very much for your hard work on our van. We appreciate you so very much! Shop local and support small businesses. We already are working on scheduling our next detailing. Get on the schedule before it's full!!</p>
+          <div class="review-author">
+            <div class="review-source">Via Facebook · Whips Washing</div>
+          </div>
+        </div>
+      </div>
+      <div class="review-card">
+        <div class="review-inner">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">I had a great experience with getting my car detailed with Whips Washing. I've never had my car detailed before, and didn't know what to expect. I'm really impressed with Cole, and my car feels brand new. I had a ton of dog hair and he got all of it out! Make sure to check him out if you need your car detailed!</p>
+          <div class="review-author">
+            <div class="review-source">Via Facebook · Whips Washing</div>
+          </div>
+        </div>
+      </div>
+      <div class="review-card">
+        <div class="review-inner">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">With 4 kids my car was in desperate need of detailing. Cole was very professional and had my car feeling new! From soda stuck in the cupholders to suckers stuck to the floor and everything in between, Cole took care of it all! Highly recommend!</p>
+          <div class="review-author">
+            <div class="review-source">Via Facebook · Whips Washing</div>
+          </div>
+        </div>
+      </div>
+      <div class="review-card">
+        <div class="review-inner">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">My Jeep was chock full of a year's worth of dog hair and there may have been a melted chocolate bar and some french fries in the mix, yet Whips Washing (Cole) put his best efforts forward and eradicated every last hair, leaving my Jeep fantastically clean and smelling amazing. He was a pleasure to speak with, proved capable, and worth every penny! Thanks Cole!</p>
+          <div class="review-author">
+            <div class="review-source">Via Facebook · Whips Washing</div>
+          </div>
+        </div>
+      </div>
+      <div class="review-card">
+        <div class="review-inner">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">Cole did a great job detailing my car today. A little ashamed to admit that my car presented quite a challenge. I dropped off a dog hair-filled car and a few hours later had a sparkling, hair-free car. Cole — thank you for taking pride in your work!</p>
+          <div class="review-author">
+            <div class="review-source">Via Facebook · Whips Washing</div>
+          </div>
+        </div>
+      </div>
+      <div class="review-card">
+        <div class="review-inner">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">My car was recently washed and detailed this weekend. He did an amazing job, it's like I got a new car. Definitely recommend him!</p>
+          <div class="review-author">
+            <div class="review-source">Via Facebook · Whips Washing</div>
+          </div>
+        </div>
+      </div>
+      <div class="review-card">
+        <div class="review-inner">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">Did amazing! Super impressed with the results. Definitely recommend.</p>
+          <div class="review-author">
+            <div class="review-source">Via Facebook · Whips Washing</div>
+          </div>
+        </div>
+      </div>
+      </div>
+    </div>
+    <div class="reviews-controls reveal">
+      <button class="review-arrow" onclick="changeReview(-1)">&#8592;</button>
+      <div class="review-dots" id="reviewDots"><div class="review-dot active" onclick="goToReview(0)"></div><div class="review-dot " onclick="goToReview(1)"></div><div class="review-dot " onclick="goToReview(2)"></div><div class="review-dot " onclick="goToReview(3)"></div><div class="review-dot " onclick="goToReview(4)"></div><div class="review-dot " onclick="goToReview(5)"></div><div class="review-dot " onclick="goToReview(6)"></div><div class="review-dot " onclick="goToReview(7)"></div></div>
+      <button class="review-arrow" onclick="changeReview(1)">&#8594;</button>
+    </div>
+  </section>
+
   <!-- ABOUT -->
   <section id="about">
     <div class="about-grid">
@@ -1651,6 +1900,32 @@
 
     // Auto start all slideshows
     [0, 1].forEach(id => resetTimer(id));
+
+
+    // Reviews slider
+    let currentReview = 0;
+    const totalReviews = 8;
+    let reviewTimer = null;
+
+    function goToReview(index) {
+      currentReview = (index + totalReviews) % totalReviews;
+      document.getElementById('reviewsTrack').style.transform = `translateX(-${currentReview * 100}%)`;
+      document.querySelectorAll('.review-dot').forEach((d, i) => {
+        d.classList.toggle('active', i === currentReview);
+      });
+      resetReviewTimer();
+    }
+
+    function changeReview(dir) {
+      goToReview(currentReview + dir);
+    }
+
+    function resetReviewTimer() {
+      if (reviewTimer) clearInterval(reviewTimer);
+      reviewTimer = setInterval(() => changeReview(1), 7000);
+    }
+
+    resetReviewTimer();
 
     // Hamburger menu
     function toggleMenu() {
