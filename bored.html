@@ -62,7 +62,7 @@ canvas{display:block;width:100%;height:100%;}
     <div class="os">Help the lightbulb dodge the whips!</div>
     <div class="otip">&#9670; TAP TWICE to double jump &#9670;</div>
     <div class="os" style="font-size:0.72rem;color:#c9a84c;opacity:0.75;">Double jump is key — especially at score 1,000!</div>
-    <button class="ob" id="btn">START GAME</button>
+    <button class="ob" id="btn" ontouchend="btnTap(event)" onclick="btnTap(event)">START GAME</button>
     <div class="os" style="font-size:0.7rem;">SPACE or TAP to jump</div>
   </div>
 </div>
@@ -112,6 +112,8 @@ var obs=[],nxt=80,aid;
 var rDone=false,bDone=false;
 var conf=[];
 var plane={on:false,done:false,x:W+90,y:30};
+  blimp={on:false,done:false,x:W+150,y:0};
+var blimp={on:false,done:false,x:W+150,y:0};
 var star={on:false,done:false,x:-10,y:20,tail:[]};
 var ltng={bolts:[],nb:0,flash:0};
 var torn={on:false,x:0,ang:0,deb:[]};
@@ -382,6 +384,13 @@ function drawBg(){
     else{plane.done=true;}
   }
 
+  // blimp (2000-2250, one pass)
+  if(sc>=2000&&sc<2250&&!blimp.done){
+    if(!blimp.on){blimp.on=true;blimp.x=W+150;blimp.y=22+Math.random()*20;}
+    if(blimp.x>-220){blimp.x-=1.0;drawBlimp(blimp.x,blimp.y);}
+    else{blimp.done=true;}
+  }
+
   // shooting star (750-850, one pass)
   if(sc>=750&&sc<850&&!star.done){
     if(!star.on){star.on=true;star.x=-10;star.y=8+Math.random()*38;star.tail=[];}
@@ -445,6 +454,60 @@ function drawBg(){
     }
     drawTornado();
   }
+}
+
+function drawBlimp(ax,ay){
+  ctx.save();
+  // Trail
+  ctx.strokeStyle='rgba(180,180,180,.12)';ctx.lineWidth=2;ctx.setLineDash([10,12]);
+  ctx.beginPath();ctx.moveTo(ax+60,ay+4);ctx.lineTo(ax+160,ay+4);ctx.stroke();
+  ctx.setLineDash([]);
+  // Main envelope - big rounded oval
+  var bg=ctx.createLinearGradient(ax,ay-22,ax,ay+22);
+  bg.addColorStop(0,'#d8d8e8');bg.addColorStop(.4,'#c0c0d4');bg.addColorStop(1,'#9090a8');
+  ctx.fillStyle=bg;
+  // Draw blimp body as scaled circle (mobile safe)
+  ctx.save();ctx.translate(ax,ay);ctx.scale(1,.42);
+  ctx.beginPath();ctx.arc(0,0,55,0,Math.PI*2);ctx.restore();ctx.fill();
+  ctx.strokeStyle='rgba(100,100,130,.4)';ctx.lineWidth=1;
+  ctx.save();ctx.translate(ax,ay);ctx.scale(1,.42);
+  ctx.beginPath();ctx.arc(0,0,55,0,Math.PI*2);ctx.restore();ctx.stroke();
+  // Nose cone
+  ctx.fillStyle='#a0a0b8';
+  ctx.beginPath();ctx.moveTo(ax+55,ay-4);ctx.lineTo(ax+68,ay+2);ctx.lineTo(ax+55,ay+8);ctx.fill();
+  // Tail fins
+  ctx.fillStyle='#b0b0c8';
+  ctx.beginPath();ctx.moveTo(ax-50,ay-12);ctx.lineTo(ax-38,ay-4);ctx.lineTo(ax-34,ay-4);ctx.closePath();ctx.fill();
+  ctx.beginPath();ctx.moveTo(ax-50,ay+14);ctx.lineTo(ax-38,ay+4);ctx.lineTo(ax-34,ay+4);ctx.closePath();ctx.fill();
+  // Gondola (cabin underneath)
+  var gg=ctx.createLinearGradient(ax-14,ay+18,ax-14,ay+32);
+  gg.addColorStop(0,'#888');gg.addColorStop(1,'#555');
+  ctx.fillStyle=gg;rr(ctx,ax-18,ay+18,36,14,3);ctx.fill();
+  // Gondola windows
+  ctx.fillStyle='rgba(140,210,255,.7)';
+  [ax-12,ax-3,ax+6].forEach(function(wx){rr(ctx,wx,ay+21,6,7,1);ctx.fill();});
+  // Ropes from envelope to gondola
+  ctx.strokeStyle='rgba(100,100,100,.5)';ctx.lineWidth=1;
+  [ax-12,ax+0,ax+12].forEach(function(rx){
+    ctx.beginPath();ctx.moveTo(rx,ay+22);ctx.lineTo(rx,ay+18);ctx.stroke();
+  });
+  // Shine on envelope
+  ctx.fillStyle='rgba(255,255,255,.18)';
+  ctx.save();ctx.translate(ax-8,ay-14);ctx.scale(1,.35);
+  ctx.beginPath();ctx.arc(0,0,28,0,Math.PI*2);ctx.restore();ctx.fill();
+  // Banner hanging from gondola
+  var bannerY=ay+36;
+  ctx.fillStyle='rgba(255,255,255,.92)';rr(ctx,ax-70,bannerY,140,16,3);ctx.fill();
+  ctx.strokeStyle='rgba(100,100,100,.3)';ctx.lineWidth=1;rr(ctx,ax-70,bannerY,140,16,3);ctx.stroke();
+  // Banner text
+  ctx.fillStyle='#c0392b';ctx.font='bold 7px sans-serif';ctx.textAlign='center';
+  ctx.fillText("we're not in Kansas anymore",ax,bannerY+11);
+  // Banner strings
+  ctx.strokeStyle='rgba(80,80,80,.4)';ctx.lineWidth=1;
+  [ax-50,ax,ax+50].forEach(function(sx){
+    ctx.beginPath();ctx.moveTo(sx,bannerY);ctx.lineTo(sx+(sx-ax)*.15,ay+32);ctx.stroke();
+  });
+  ctx.restore();
 }
 
 function drawPlane(ax,ay){
@@ -661,6 +724,7 @@ function startGame(){
   sc=0;fr=0;spd=5;obs=[];nxt=80;
   rDone=false;bDone=false;won=false;conf=[];
   plane={on:false,done:false,x:W+90,y:30};
+  blimp={on:false,done:false,x:W+150,y:0};
   star={on:false,done:false,x:-10,y:20,tail:[]};
   ltng={bolts:[],nb:0,flash:0};
   torn={on:false,x:0,ang:0,deb:[]};
@@ -681,12 +745,11 @@ document.getElementById('wrap').addEventListener('touchstart',function(e){
 document.getElementById('wrap').addEventListener('click',function(e){
   e.preventDefault();if(!go)return;bulb.jump();
 });
-btn.addEventListener('click',function(e){
-  e.preventDefault();e.stopPropagation();startGame();
-});
+function btnTap(e){if(e)e.preventDefault();if(e)e.stopPropagation();startGame();}
+document.getElementById('btn').addEventListener('click',btnTap);
 
-// initial draw
-drawBg();drawGround();bulb.draw();
+// initial draw - deferred for iOS
+setTimeout(function(){try{drawBg();drawGround();bulb.draw();}catch(e){}},100);
 </script>
 </body>
 </html>
