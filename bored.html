@@ -118,7 +118,7 @@ var GROUND=H-30,GRAVITY=0.6,JUMP_FORCE=-13,bestScore=0;
 
 var gameRunning=false,gameWon=false,score=0,frame=0,speed=5;
 var obstacles=[],nextObstacle=80,animId;
-var reindeerSpawned=false,confettiPieces=[];
+var reindeerSpawned=false,reindeerPassed=false,savedSpeed=5,confettiPieces=[];
 
 var bulb={
   x:80,y:GROUND,w:38,h:48,vy:0,jumps:0,maxJumps:2,grounded:true,
@@ -329,8 +329,18 @@ function gameLoop(){
   obstacles.forEach(function(ob){ob.x-=speed; drawVehicle(ob);});
   if(score>=200&&!reindeerSpawned){
     reindeerSpawned=true;
+    savedSpeed=speed;
+    speed=2.2;
     obstacles.push({x:W+10,y:GROUND,isReindeer:true,w:90,h:38});
-    nextObstacle=70;
+    nextObstacle=90;
+  }
+  // Restore speed after reindeer passes
+  if(reindeerSpawned&&!reindeerPassed){
+    var rd=obstacles.filter(function(o){return o.isReindeer;});
+    if(rd.length===0&&reindeerSpawned){
+      reindeerPassed=true;
+      speed=savedSpeed;
+    }
   }
   nextObstacle--;
   if(nextObstacle<=0){
@@ -348,7 +358,7 @@ function gameLoop(){
 
 function startGame(){
   score=0;frame=0;speed=5;obstacles=[];nextObstacle=80;
-  reindeerSpawned=false;gameWon=false;confettiPieces=[];
+  reindeerSpawned=false;reindeerPassed=false;savedSpeed=5;gameWon=false;confettiPieces=[];
   bulb.y=GROUND;bulb.vy=0;bulb.jumps=0;bulb.grounded=true;
   scoreEl.textContent='0';
   overlay.classList.add('hidden');
