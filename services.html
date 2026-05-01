@@ -510,14 +510,7 @@
     .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.7s ease, transform 0.7s ease; }
     .reveal.visible { opacity: 1; transform: translateY(0); }
 
-    /* RESPONSIVE */
-    @media (max-width: 900px) {
-      nav { padding: 1.2rem 2rem; }
-      nav { padding: 1rem 1.2rem; }
-      nav ul { display: none; }
-      .nav-cta { padding: 0.45rem 0.9rem; font-size: 0.65rem; letter-spacing: 0.1em; }
-      .hamburger { display: flex; }
-
+    /* ── HAMBURGER & MOBILE MENU ── */
     .hamburger {
       display: none;
       flex-direction: column;
@@ -539,6 +532,7 @@
     .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
     .hamburger.open span:nth-child(2) { opacity: 0; }
     .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
     .mobile-menu {
       display: none;
       position: fixed;
@@ -578,6 +572,13 @@
       height: 1px;
       background: rgba(240,236,228,0.1);
     }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      nav { padding: 1rem 1.2rem; }
+      nav ul { display: none; }
+      .nav-cta { padding: 0.45rem 0.9rem; font-size: 0.65rem; letter-spacing: 0.1em; }
+      .hamburger { display: flex; }
 
 
       .window-contact-grid { grid-template-columns: 1fr; gap: 2.5rem; }
